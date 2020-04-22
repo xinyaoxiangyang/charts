@@ -1,0 +1,16 @@
+# for deploymeny
+spec:
+  replicas: 1
+  spec:
+    containers:
+      image: nginx
+      imagetag: latest
+
+# for service
+name: nginx
+spec:
+  type: ClusterIP
+  ports:
+    exportport: 80
+    targetport: 80
+    protocol: TCP

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx
+  name: {{ .Values.name }}
+spec:
+  ports:
+  - name: export-port
+    port: {{ .Values.spec.ports.exportport }}
+    protocol: {{ .Values.spec.ports.protocol }}
+    targetPort: {{ .Values.spec.ports.targetport }}
+  selector:
+    app: nginx
+  type: {{ .Values.spec.type }}

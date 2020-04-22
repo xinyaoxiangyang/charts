@@ -1,0 +1,63 @@
+labels:
+  io.cattle.role: cluster # options are cluster/project
+categories:
+- CI/CD
+questions:
+- variable: spec.replicas
+  default: "1"
+  type: string
+  description: "the replicas of the pod you want to deploy"
+  label: replicas
+  group: DEPLYMENT
+- variable: spec.spec.containers.image
+  type: string
+  description: "the image of your application"
+  label: image
+  group: DEPLYMENT
+- variable: spec.spec.containers.imagetag
+  type: string
+  description: "the tag of your app image"
+  label: imagetag
+  group: DEPLYMENT
+- variable: spec.type
+  type: enum
+  description: "servie type, eg. ClusterIP, NodePort"
+  label: service type
+  group: SERVICE
+  options:
+  - "ClusterIP"
+  - "NodePort"
+- variable: spec.ports.exportport
+  type: string
+  default: "80"
+  description: "expose port"
+  label: port
+  group: SERVICE
+- variable: spec.ports.targetport
+  type: string
+  default: "80"
+  description: "container port"
+  label: targetport
+  group: SERVICE
+- variable: spec.ports.protocol
+  type: enum
+  description: "protocol"
+  label: protocol
+  group: SERVICE
+  options:
+  - "TCP"
+  - "UDP"
+- variable: name
+  type: string
+  description: "your service name"
+  default: "nginx-clusterip"
+  label: service name
+  group: SERVICE
+  show_if: "spec.type=ClusterIP"
+- variable: name
+  type: string
+  description: "your service name"
+  default: "nginx-nodeport"
+  label: service name
+  group: SERVICE
+  show_if: "spec.type=NodePort"
